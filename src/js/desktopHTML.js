@@ -1,4 +1,4 @@
-'use strict'
+
 const temp = document.createElement('template')
 temp.innerHTML = `
 <head>
@@ -22,8 +22,19 @@ temp.innerHTML = `
 </div>
 
 
+`
+const win = document.createElement('template')
+win.innerHTML = `
+<head>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
 
+<div id = 'div'>
+<div id = 'div2' draggeble = 'true'>
+<div id = 'close' >+</div>
+</div>
+</div>
 
 `
 
-export default temp
+export { temp, win }

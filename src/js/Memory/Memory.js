@@ -1,13 +1,10 @@
 'use strict'
 import HTML from './html.js'
 
-
-
 class Memory extends window.HTMLElement {
   constructor () {
     super()
     this.attachShadow({ mode: 'open' })
-   
     this.shadowRoot.appendChild(HTML.content.cloneNode(true))
     this.board = this.shadowRoot.querySelector('#Board')
     this.turned1 = this.turned1
