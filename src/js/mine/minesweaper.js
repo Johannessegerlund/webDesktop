@@ -5,18 +5,39 @@ class Mine extends window.HTMLElement {
     super()
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(Minehtml.content.cloneNode(true))
-    this.board = this.shadowRoot.querySelector('#mine')
+    this.mine = this.shadowRoot.querySelector('#mine')
     this.row = 4
     this.cols = 4
     this.tiles = this.something(this.row, this.cols)
   }
 
   connectedCallback () {
-    this.brick(this.row, this.cols)
+    this.brick(4, 4)
   }
 
-  brick () {
-for(i = 0; i < rows*cols; i+=)
+  hej1 () {
+    let hej = document.createElement('img')
+    Math.floor(Math.random() * rows, cols)
+  }
+
+  brick (rows, cols) {
+    for (let i = 0; i < rows * cols; i += 1) {
+      let img = document.createElement('img')
+      img.setAttribute('src', 'image/questionmark.jpg')
+      this.mine.appendChild(img)
+
+      if ((i + 1) % cols === 0) {
+        this.mine.appendChild(document.createElement('br'))
+      }
+
+      img.addEventListener('click', (e) => {
+        img.setAttribute('src', 'image/smily.png')
+      })
+    }
+  }
+
+  turn () {
+
   }
 
   something (rows, cols) {

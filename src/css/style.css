@@ -60,7 +60,7 @@ footer{
     visibility: hidden;
   }
 
-  /* .Calc{
+  .Calc{
     display: grid;
     justify-content: center;
     align-content: center;
@@ -107,7 +107,7 @@ footer{
   .output .current-operand {
     color: white;
     font-size: 2.5rem;
-  } */
+  }
 
   #div2 {
     width:300px;
@@ -125,12 +125,18 @@ footer{
     cursor: pointer;
 }
 
-
-#mine{
-  height: 40px;
-  width: 40px;
-  position: absolute;
-  bottom: 8px;
-  left: 150px;
+div.current{
+  color: white;
   
 }
+div.previous{
+  color: white;
+  
+}
+
+
+#mine img{
+  width: 30px;
+  height: 30px;
+  
+  }
