@@ -14,6 +14,7 @@ class Calculater extends window.HTMLElement {
     this.previous = this.shadowRoot.querySelector('.previous')
     this.curent = this.shadowRoot.querySelector('.current')
     this.calc = (this.shadowRoot.querySelector('.previous'), this.shadowRoot.querySelector('.current'))
+    this.symbol = this.symbol
   }
 
   connectedCallback () {
@@ -24,6 +25,17 @@ class Calculater extends window.HTMLElement {
     this.shadowRoot.querySelectorAll('button').forEach(item => {
       item.addEventListener('click', e => {
         e.preventDefault()
+
+        if (e.target.textContent === '+') {
+          this.symbol = '+'
+        } else if (e.target.textContent === '-') {
+          this.symbol = '-'
+        } if (e.target.textContent === '/') {
+          this.symbol = '/'
+        } else if (e.target.textContent === '*') {
+          this.symbol = '*'
+        }
+
         if (e.target.matches('.number')) {
           let x = ''
           x = e.target.textContent
@@ -34,30 +46,24 @@ class Calculater extends window.HTMLElement {
           this.previous.textContent = this.curent.textContent
           this.curent.textContent = ''
         }
-        if (e.target.matches('.enter')) {
-        // let hi
-        // switch () {
-        //   case '+':
-        //     hi = this.add()
-        //     break
-        //   case '-':
-        //     hi = this.subtrakt()
-        //     break
-        //   case '*':
-        //     hi = this.times()
-        //     break
-        //   case '/':
-        //     hi = this.devide()
-        //     break
-        //   default:
-        //     return hi
-        // }
-        // this.curent.textContent = hi
 
-          this.add()
-        // this.subtrakt()
-        //  this.devide()
-        //  this.times()
+        if (e.target.matches('.equal')) {
+          if (this.symbol === '+') {
+            this.add()
+          }
+          if (this.symbol === '-') {
+            this.subtrakt()
+          }
+          if (this.symbol === '*') {
+            this.times()
+          }
+          if (this.symbol === '/') {
+            this.devide()
+          }
+        }
+        if (e.target.matches('.AC')) {
+          this.curent.textContent = ''
+          this.previous.textContent = ''
         }
       })
     })
@@ -69,17 +75,17 @@ class Calculater extends window.HTMLElement {
   }
 
   devide () {
-    let hej1 = parseFloat(this.previous.textContent) / parseFloat(this.curent.textContent)
-    this.curent.textContent = hej1
+    let hej = parseFloat(this.previous.textContent) / parseFloat(this.curent.textContent)
+    this.curent.textContent = hej
   }
   subtrakt () {
-    let hej2 = parseFloat(this.previous.textContent) - parseFloat(this.curent.textContent)
-    this.curent.textContent = hej2
+    let hej = parseFloat(this.previous.textContent) - parseFloat(this.curent.textContent)
+    this.curent.textContent = hej
   }
 
   times () {
-    let hej2 = parseFloat(this.previous.textContent) * parseFloat(this.curent.textContent)
-    this.curent.textContent = hej2
+    let hej = parseFloat(this.previous.textContent) * parseFloat(this.curent.textContent)
+    this.curent.textContent = hej
   }
 }
 

@@ -13,7 +13,7 @@ calcHTML.innerHTML = `
       <div class="current"></div>
     </div>
 
-<button class = 'enter'>enter</button>
+<button class = 'AC'>AC</button>
 <button class = 'del'>Del</button>
 <button class = 'operation'>/</button>
 <button class ='number'>1</button>    
@@ -30,7 +30,7 @@ calcHTML.innerHTML = `
 <button class = 'operation'>.</button>
 <button class = 'operation'>-</button>
 <button class ='number'>0</button>
-<button class = 'equal row'>=</button
+<button class = 'equal'>=</button
 </div>
 `
 

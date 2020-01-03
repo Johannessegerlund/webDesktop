@@ -23,7 +23,7 @@ export class Desk extends window.HTMLElement {
       const memory = document.createElement('memory-view')
       this.div2.appendChild(memory)
 
-      this.mouse()
+      // this.mouse()
       vad.shadowRoot.querySelector('#close').addEventListener('click', e => {
         this.div2.style.display = 'none'
       })
