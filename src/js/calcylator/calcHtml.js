@@ -15,8 +15,9 @@ calcHTML.innerHTML = `
 
 <button class = 'AC'>AC</button>
 <button class = 'del'>Del</button>
-<button class = 'operation'>/</button>
-<button class ='number'>1</button>    
+<button class = 'dec'>.</button>
+<button class = 'operation'>/</button>  
+<button class ='number'>1</button>  
 <button class ='number'>2</button>
 <button class ='number'>3</button>
 <button class = 'operation'>+</button>
@@ -27,7 +28,6 @@ calcHTML.innerHTML = `
 <button class ='number'>7</button>
 <button class ='number'>8</button>
 <button class ='number'>9</button>
-<button class = 'operation'>.</button>
 <button class = 'operation'>-</button>
 <button class ='number'>0</button>
 <button class = 'equal'>=</button

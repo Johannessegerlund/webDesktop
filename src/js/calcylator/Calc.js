@@ -43,6 +43,9 @@ class Calculater extends window.HTMLElement {
           console.log(x)
         }
         if (e.target.matches('.operation')) {
+          let x = ''
+          x = e.target.textContent
+          this.curent.textContent += ' ' + x
           this.previous.textContent = this.curent.textContent
           this.curent.textContent = ''
         }
@@ -61,9 +64,16 @@ class Calculater extends window.HTMLElement {
             this.devide()
           }
         }
+
         if (e.target.matches('.AC')) {
           this.curent.textContent = ''
           this.previous.textContent = ''
+        }
+        if (e.target.matches('.del')) {
+          this.curent.textContent = this.curent.textContent.slice(0, -1)
+        }
+        if (e.target.matches('.dec')) {
+          this.curent.textContent = this.curent.textContent + '.'
         }
       })
     })
