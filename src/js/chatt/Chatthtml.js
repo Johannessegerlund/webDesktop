@@ -6,10 +6,10 @@ chattHTML.innerHTML = `
 </head>
 
 <div class = 'chatt'>
-<div class = 'massage' >
+<div class = 'messages' >
 
 <template>
-<div class = 'massage' > 
+<div class = 'message' > 
 <p class = 'text' </p> 
 <p class = 'author' > </p>
 </div>

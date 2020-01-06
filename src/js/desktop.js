@@ -23,8 +23,12 @@ export class Desk extends window.HTMLElement {
           this.div2.appendChild(memory)
         } else if (event.target.matches('#calc')) {
           this.div2 = vad.shadowRoot.querySelector('#div2')
-          const memory = document.createElement('calculater-view')
-          this.div2.appendChild(memory)
+          const calc = document.createElement('calculater-view')
+          this.div2.appendChild(calc)
+        } else if (event.target.matches('#chatt')) {
+          this.div2 = vad.shadowRoot.querySelector('#div2')
+          const chatt = document.createElement('chatt-view')
+          this.div2.appendChild(chatt)
         }
 
         vad.shadowRoot.querySelector('#close').addEventListener('click', e => {
