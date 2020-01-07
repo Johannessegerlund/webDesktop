@@ -10,8 +10,8 @@ chattHTML.innerHTML = `
 
 <template>
 <div class = 'message' > 
-<p class = 'text' </p> 
 <p class = 'author' > </p>
+<p class = 'text' </p> 
 </div>
 </template>
 </div>

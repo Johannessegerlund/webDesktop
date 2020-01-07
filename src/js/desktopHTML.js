@@ -29,10 +29,9 @@ win.innerHTML = `
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<div id = 'div'>
-<div id = 'div2' draggeble = 'true'>
+
+<div class = 'appWindow' draggable = 'true'>
 <div id = 'close' >+</div>
-</div>
 </div>
 
 `

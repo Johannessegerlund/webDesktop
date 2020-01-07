@@ -14,25 +14,23 @@ export class Desk extends window.HTMLElement {
     this.shadowRoot.querySelectorAll('.imghover').forEach(element => {
       element.addEventListener('click', event => {
         const container = this.shadowRoot.querySelector('.container')
-        const vad = document.createElement('desk-window')
-        container.appendChild(vad)
+        const deskWindow = document.createElement('desk-window')
+        container.appendChild(deskWindow)
 
+        const appWindow = deskWindow.shadowRoot.querySelector('.appWindow')
         if (event.target.matches('#memo')) {
-          this.div2 = vad.shadowRoot.querySelector('#div2')
           const memory = document.createElement('memory-view')
-          this.div2.appendChild(memory)
+          appWindow.appendChild(memory)
         } else if (event.target.matches('#calc')) {
-          this.div2 = vad.shadowRoot.querySelector('#div2')
           const calc = document.createElement('calculater-view')
-          this.div2.appendChild(calc)
+          appWindow.appendChild(calc)
         } else if (event.target.matches('#chatt')) {
-          this.div2 = vad.shadowRoot.querySelector('#div2')
           const chatt = document.createElement('chatt-view')
-          this.div2.appendChild(chatt)
+          appWindow.appendChild(chatt)
         }
 
-        vad.shadowRoot.querySelector('#close').addEventListener('click', e => {
-          this.div2.style.display = 'none'
+        deskWindow.shadowRoot.querySelector('#close').addEventListener('click', e => {
+        appWindow.style.display = 'none'
         })
       })
     })

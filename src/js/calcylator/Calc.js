@@ -15,6 +15,7 @@ class Calculater extends window.HTMLElement {
     this.curent = this.shadowRoot.querySelector('.current')
     this.calc = (this.shadowRoot.querySelector('.previous'), this.shadowRoot.querySelector('.current'))
     this.symbol = this.symbol
+    this.numbers = []
   }
 
   connectedCallback () {
@@ -40,7 +41,22 @@ class Calculater extends window.HTMLElement {
           let x = ''
           x = e.target.textContent
           this.curent.textContent += x
-          console.log(x)
+
+          if (this.symbol = '+') {
+            this.numbers.push(parseFloat(e.target.textContent))
+            console.log('x', this.numbers)
+            let sum = this.numbers.reduce((a, b) => a + b, 0)
+            this.curent.textContent = sum
+
+            console.log('TOT', sum)
+          } else if (this.symbol = '*') {
+            this.numbers.push(parseFloat(e.target.textContent))
+            console.log('x', this.numbers)
+            let sum = this.numbers.reduce((a, b) => a * b, 0)
+            this.curent.textContent = sum
+
+            console.log('TOT', sum)
+          }
         }
         if (e.target.matches('.operation')) {
           let x = ''
@@ -68,6 +84,7 @@ class Calculater extends window.HTMLElement {
         if (e.target.matches('.AC')) {
           this.curent.textContent = ''
           this.previous.textContent = ''
+          this.numbers = []
         }
         if (e.target.matches('.del')) {
           this.curent.textContent = this.curent.textContent.slice(0, -1)

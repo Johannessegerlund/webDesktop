@@ -52,7 +52,7 @@ class Chatt extends window.HTMLElement {
     const data = {
       type: 'message',
       data: text,
-      username: 'Johannes',
+      username: 'Johannes:',
       channel: '',
       key: 'eDBE76deU7L0H9mEBgxUKVR0VCnq0XBd'
     }
