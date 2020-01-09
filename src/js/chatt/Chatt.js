@@ -19,6 +19,8 @@ class Chatt extends window.HTMLElement {
       }
     })
     this.connect()
+
+    this.userN()
   }
 
   connect () {
@@ -49,10 +51,11 @@ class Chatt extends window.HTMLElement {
   }
 
   sendMsg (text) {
+    
     const data = {
       type: 'message',
       data: text,
-      username: 'Johannes:',
+      username: this.user,
       channel: '',
       key: 'eDBE76deU7L0H9mEBgxUKVR0VCnq0XBd'
     }
@@ -61,7 +64,20 @@ class Chatt extends window.HTMLElement {
       socket.send(JSON.stringify(data))
       console.log('sending message', text)
     })
+
+    window.localStorage.setItem('username', JSON.stringify(data.username))
   }
+
+
+    userN(){
+    this.user = JSON.parse(window.localStorage.getItem('username'))
+
+    this.shadowRoot.querySelector('#btn1').addEventListener('click', e => {
+    if (e.target === this.shadowRoot.querySelector('#btn1')) {
+     this.user = this.shadowRoot.querySelector('#textbox1').value
+    } 
+  })
+    }
 }
 
 window.customElements.define('chatt-view', Chatt)

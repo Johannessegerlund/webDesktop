@@ -30,7 +30,7 @@ export class Desk extends window.HTMLElement {
         }
 
         deskWindow.shadowRoot.querySelector('#close').addEventListener('click', e => {
-        appWindow.style.display = 'none'
+          appWindow.style.display = 'none'
         })
       })
     })

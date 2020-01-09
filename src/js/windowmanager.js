@@ -23,12 +23,12 @@ class Deskwindow extends window.HTMLElement {
   dragElement (element) {
     element.addEventListener('mousedown', e => {
       if (e.target === element) {
-      this.dragMouseDown(e, element), false
+        this.dragMouseDown(e, element)
       }
     })
   }
 
-  dragMouseDown(e, element) {
+  dragMouseDown (e, element) {
     e.preventDefault()
     this.isSelected = true
     e = e || window.event
@@ -38,23 +38,22 @@ class Deskwindow extends window.HTMLElement {
     document.addEventListener('mouseup', e => this.closeDragElement(e, element))
   }
 
-  elementDrag(e, element) {
-    if(this.isSelected === true){
-    e.preventDefault()
+  elementDrag (e, element) {
+    if (this.isSelected === true) {
+      e.preventDefault()
 
-    e = e || window.event
-    this.pos1 = this.pos3 - e.clientX
-    this.pos2 = this.pos4 - e.clientY
-    this.pos3 = e.clientX
-    this.pos4 = e.clientY
+      e = e || window.event
+      this.pos1 = this.pos3 - e.clientX
+      this.pos2 = this.pos4 - e.clientY
+      this.pos3 = e.clientX
+      this.pos4 = e.clientY
 
-    element.style.top = (element.offsetTop - this.pos2) + 'px'
-    element.style.left = (element.offsetLeft - this.pos1) + 'px'
+      element.style.top = (element.offsetTop - this.pos2) + 'px'
+      element.style.left = (element.offsetLeft - this.pos1) + 'px'
     }
-    
   }
 
-  closeDragElement(e) {
+  closeDragElement (e) {
     console.log('Leaving')
     this.isSelected = false
     // document.removeEventListener('mouseup', (e) => console.log('Removed mouseup listener'))
