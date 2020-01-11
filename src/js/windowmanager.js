@@ -56,29 +56,7 @@ class Deskwindow extends window.HTMLElement {
   closeDragElement (e) {
     console.log('Leaving')
     this.isSelected = false
-    // document.removeEventListener('mouseup', (e) => console.log('Removed mouseup listener'))
-    // document.removeEventListener('mousemove', (e) => console.log('Removed mousemove listener'))
   }
-
-  // dragableWindow (elem) {
-  //   this.selected = elem
-  //   this.x_elem = this.x_pos - this.selected.offsetLeft
-  //   this.y_elem = this.y_pos - this.selected.offsetTop
-  // }
-
-  // // Will be called when user dragging an element
-  // moveElem (e) {
-  //   this.x_pos = document.all ? window.event.clientX : e.pageX
-  //   this.y_pos = document.all ? window.event.clientY : e.pageY
-  //   if (this.selected !== null) {
-  //     this.selected.style.left = (this.x_pos - this.x_elem) + 'px'
-  //     this.selected.style.top = (this.y_pos - this.y_elem) + 'px'
-  //   }
-  // }
-
-  // destroy () {
-  //   this.selected = null
-  // }
 }
 
 window.customElements.define('desk-window', Deskwindow)

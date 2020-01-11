@@ -5,6 +5,8 @@ calcHTML.innerHTML = `
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
+<P class ='divHeader'>Calculator</p>
+
 <div class = "Calc" >
 
 

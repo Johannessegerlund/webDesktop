@@ -46,12 +46,11 @@ class Chatt extends window.HTMLElement {
     let temp = this.chatt.querySelectorAll('template')[0]
     let msg = document.importNode(temp.content.firstElementChild, true)
     msg.querySelectorAll('.text')[0].textContent = message.data
-    msg.querySelectorAll('.author')[0].textContent = message.username
+    msg.querySelectorAll('.author')[0].textContent = message.username + ':'
     this.chatt.querySelectorAll('.messages')[0].appendChild(msg)
   }
 
   sendMsg (text) {
-    
     const data = {
       type: 'message',
       data: text,
@@ -68,16 +67,15 @@ class Chatt extends window.HTMLElement {
     window.localStorage.setItem('username', JSON.stringify(data.username))
   }
 
-
-    userN(){
+  userN () {
     this.user = JSON.parse(window.localStorage.getItem('username'))
 
-    this.shadowRoot.querySelector('#btn1').addEventListener('click', e => {
-    if (e.target === this.shadowRoot.querySelector('#btn1')) {
-     this.user = this.shadowRoot.querySelector('#textbox1').value
-    } 
-  })
-    }
+    this.shadowRoot.querySelector('#sendUser').addEventListener('click', e => {
+      if (e.target === this.shadowRoot.querySelector('#sendUser')) {
+        this.user = this.shadowRoot.querySelector('#username').value
+      }
+    })
+  }
 }
 
 window.customElements.define('chatt-view', Chatt)

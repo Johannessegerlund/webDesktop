@@ -4,23 +4,22 @@ chattHTML.innerHTML = `
 <head>
   <link rel="stylesheet" href="../css/style.css">
 </head>
-
-<input id='textbox1' type='text'></input>
-<Button id='btn1' value=''>sänd</Button>
-
-
+<P class ='divHeader'>CHATT</p>
 <div class = 'chatt'>
 <div class = 'messages' >
 
 <template>
-<div class = 'message' > 
+<div class = 'message'  > 
 <p class = 'author' > </p>
 <p class = 'text' </p> 
 </div>
 </template>
 </div>
-<textarea class = 'textmassage'></textarea>
+<textarea class = 'textmassage' ></textarea>
 </div>
+
+<input id='username' placeholder = 'Användare' type='text'></input>
+<Button id='sendUser' >Spara</Button>
 `
 
 export default chattHTML

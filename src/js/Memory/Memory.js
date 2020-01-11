@@ -1,12 +1,11 @@
 'use strict'
-import {template, Pick} from './html.js'
+import { template, Pick } from './html.js'
 
 class Memory extends window.HTMLElement {
   constructor () {
     super()
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(Pick.content.cloneNode(true))
-  
     this.turned1 = this.turned1
     this.lastTile = this.lastTile
     this.turned2 = this.turned2
@@ -18,32 +17,31 @@ class Memory extends window.HTMLElement {
   }
 
   connectedCallback () {
-    this.shadowRoot.querySelectorAll('button').forEach(element =>{
+    this.shadowRoot.querySelectorAll('button').forEach(element => {
       element.addEventListener('click', e => {
-    if (e.target.matches('#four')) {
-    this.row = 4
-    this.cols = 4
-    this.tiles = this.something(this.row, this.cols)
-    this.shadowRoot.appendChild(template.content.cloneNode(true))
-    this.bricks(this.row, this.cols)
-} else if (e.target.matches('#two')) {
-    this.row = 2
-    this.cols = 2
-    this.tiles = this.something(this.row, this.cols)
-    this.shadowRoot.appendChild(template.content.cloneNode(true))
-    this.bricks(this.row, this.cols)
-    }
-    if (e.target.matches('#twoByfour')) {
-    this.row = 4
-    this.cols = 2
-    this.tiles = this.something(this.row, this.cols)
-    this.shadowRoot.appendChild(template.content.cloneNode(true))
-    this.bricks(this.row, this.cols)
-    }
+        this.shadowRoot.querySelector('#remove').innerHTML = ''
+        if (e.target.matches('#four')) {
+          this.row = 4
+          this.cols = 4
+          this.tiles = this.something(this.row, this.cols)
+          this.shadowRoot.appendChild(template.content.cloneNode(true))
+          this.bricks(this.row, this.cols)
+        } else if (e.target.matches('#two')) {
+          this.row = 2
+          this.cols = 2
+          this.tiles = this.something(this.row, this.cols)
+          this.shadowRoot.appendChild(template.content.cloneNode(true))
+          this.bricks(this.row, this.cols)
+        }
+        if (e.target.matches('#twoByfour')) {
+          this.row = 4
+          this.cols = 2
+          this.tiles = this.something(this.row, this.cols)
+          this.shadowRoot.appendChild(template.content.cloneNode(true))
+          this.bricks(this.row, this.cols)
+        }
       })
     })
-      //  this.shadowRoot.appendChild(template.content.cloneNode(true))
-    
   }
 
   turnBrick (tile, a, img) {
@@ -95,7 +93,7 @@ class Memory extends window.HTMLElement {
   }
 
   bricks () {
-      this.board = this.shadowRoot.querySelector('#Board')
+    this.board = this.shadowRoot.querySelector('#Board')
     let img
     let a
     console.log(this.tiles)

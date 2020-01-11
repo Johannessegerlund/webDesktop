@@ -8,6 +8,7 @@ export class Desk extends window.HTMLElement {
     super()
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(temp.content.cloneNode(true))
+    this.windowArr = []
   }
 
   connectedCallback () {
@@ -17,7 +18,9 @@ export class Desk extends window.HTMLElement {
         const deskWindow = document.createElement('desk-window')
         container.appendChild(deskWindow)
 
-        const appWindow = deskWindow.shadowRoot.querySelector('.appWindow')
+        let appWindow = deskWindow.shadowRoot.querySelector('.appWindow')
+        this.windowArr.push(appWindow)
+
         if (event.target.matches('#memo')) {
           const memory = document.createElement('memory-view')
           appWindow.appendChild(memory)
@@ -32,8 +35,28 @@ export class Desk extends window.HTMLElement {
         deskWindow.shadowRoot.querySelector('#close').addEventListener('click', e => {
           appWindow.style.display = 'none'
         })
+        this.focus(deskWindow)
       })
     })
+  }
+
+  focus (deskWindow) {
+    deskWindow.shadowRoot.querySelector('.appWindow').addEventListener('click', e => {
+      this.sortArr(e)
+      this.focus1()
+    })
+  }
+
+  sortArr (e) {
+    this.windowArr.splice(e.target, 1)
+    this.windowArr.push(e.target)
+  }
+
+  focus1 () {
+    for (let i = this.windowArr.length - 1; i >= 0; i--) {
+      this.windowArr[i].style.zIndex = i
+      console.log(this.windowArr[i])
+    }
   }
 }
 
