@@ -5,6 +5,10 @@ chattHTML.innerHTML = `
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <P class ='divHeader'>CHATT</p>
+
+<input id='username' placeholder = 'Användare' type='text'></input>
+<Button id='sendUser' >Spara</Button>
+
 <div class = 'chatt'>
 <div class = 'messages' >
 
@@ -15,11 +19,10 @@ chattHTML.innerHTML = `
 </div>
 </template>
 </div>
-<textarea class = 'textmassage' ></textarea>
+<textarea class = 'textmassage' placeholder = 'skriv in användarnamn & börja chatta'></textarea>
 </div>
 
-<input id='username' placeholder = 'Användare' type='text'></input>
-<Button id='sendUser' >Spara</Button>
+
 `
 
 export default chattHTML

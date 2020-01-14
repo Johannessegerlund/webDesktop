@@ -3,17 +3,24 @@ import { temp } from './desktopHTML.js'
 import './Memory/Memory.js'
 import './windowmanager.js'
 import './calcylator/Calc.js'
+
+/**
+ * @class Desk
+ * @extends {window.HTML}
+ */
 export class Desk extends window.HTMLElement {
   constructor () {
     super()
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(temp.content.cloneNode(true))
     this.windowArr = []
+    this.zIndex = 0
   }
   /**
- * Listeans to three symols and depending on
+ * Listens to three symbols and depending on
  * witch you press it contains diffrent content
- * It also listeans to close, witch is a X on the window in site whean pressed it close's
+ * It also listens to close
+ * pushes the windows that's clicked to an array
  */
   connectedCallback () {
     this.shadowRoot.querySelectorAll('.imghover').forEach(element => {
@@ -44,7 +51,7 @@ export class Desk extends window.HTMLElement {
     })
   }
   /**
- * Listeans to the windows you opens
+ * Listens to the windows you opens
  * @param {} deskWindow
  */
   focus (deskWindow) {
@@ -54,21 +61,19 @@ export class Desk extends window.HTMLElement {
     })
   }
   /**
- * Takes the target thats pressed and place it last
+ * Takes the target thats pressed and place it first in array
  * @param {EventTarget} e
  */
   sortArr (e) {
     this.windowArr.splice(e.target, 1)
-    this.windowArr.push(e.target)
+    this.windowArr.unshift(e.target)
   }
   /**
- * Makes the window that is last in array the highest z-index
+ * Makes the window that is first in array the highest z-index
  */
   focusWindow () {
-    for (let i = this.windowArr.length - 1; i >= 0; i--) {
-      this.windowArr[i].style.zIndex = i
-      // console.log(this.windowArr[i])
-    }
+    this.zIndex += 1
+    this.windowArr[0].style.zIndex = this.zIndex
   }
 }
 

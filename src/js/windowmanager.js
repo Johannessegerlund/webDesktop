@@ -1,5 +1,10 @@
 'use strict'
 import { win } from './desktopHTML.js'
+
+/**
+ * @class Deskwindow
+ * @extends {window.HTML}
+ */
 class Deskwindow extends window.HTMLElement {
   constructor () {
     super()
@@ -20,7 +25,7 @@ class Deskwindow extends window.HTMLElement {
     }
   }
   /**
- *Listeans if mouse is down
+ *Listens if mouse is down
  * @param {} element
  */
   dragElement (element) {
@@ -31,7 +36,7 @@ class Deskwindow extends window.HTMLElement {
     })
   }
   /**
- * Determents where the window whean you use mousedown
+ * Determines where the window is when you use mousedown
  * and if you use mouse up or move
  * @param {EventTarget} e
  * @param {*} element

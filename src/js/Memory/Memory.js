@@ -1,6 +1,9 @@
 'use strict'
 import { template, Pick } from './html.js'
-
+/**
+ * @class Memory
+ * @extends {window.HTML}
+ */
 class Memory extends window.HTMLElement {
   constructor () {
     super()
@@ -11,13 +14,10 @@ class Memory extends window.HTMLElement {
     this.turned2 = this.turned2
     this.pairs = 0
     this.try = 0
-    this.row = 4
-    this.cols = 4
-    this.tiles = this.something(this.row, this.cols)
   }
 
   /**
-   * Listeans to three buttons and whean click removes the buttons and play the size you have pressed
+   * Listens to three buttons and when clicked removes the buttons and play the size you have pressed
    */
   connectedCallback () {
     this.shadowRoot.querySelectorAll('button').forEach(element => {
@@ -74,8 +74,7 @@ class Memory extends window.HTMLElement {
         this.pairs += 1
 
         if (this.pairs === (this.row * this.cols) / 2) {
-          // console.log('you won at' + ', ' + this.try + ', ' + 'tries')
-          this.shadowRoot.querySelector('#Board').innerHTML = 'you won at' + ', ' + this.try + ', ' + 'tries'
+          this.shadowRoot.querySelector('#Board').innerHTML = 'you won at' + ' ' + this.try + ' ' + 'tries'
         }
 
         setTimeout(() => {
@@ -99,14 +98,14 @@ class Memory extends window.HTMLElement {
   }
 
   /**
-   * Creates the bricks and listeans to the bricks.
-   * eventlisteaner so you can play with keyboard.
+   * Creates the bricks and listens to the bricks.
+   * Eventlistener so you can play with keyboard.
    */
   bricks () {
     this.board = this.shadowRoot.querySelector('#Board')
     let img
     let a
-    // console.log(this.tiles)
+
     this.tiles.forEach((tile, index) => {
       a = document.createElement('a')
 
@@ -141,7 +140,7 @@ class Memory extends window.HTMLElement {
 
   /**
    * A fisher yates shuffel function that returns an array
-   * witch shuffels the bricks
+   * witch shuffles the bricks
    * @param {number} rows
    * @param {number} cols
    * @returns array

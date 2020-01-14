@@ -1,6 +1,9 @@
 
 import chattHTML from './Chatthtml.js'
-
+/**
+ * @class Chatt
+ * @extends {window.HTML}
+ */
 class Chatt extends window.HTMLElement {
   constructor () {
     super()
@@ -17,18 +20,17 @@ class Chatt extends window.HTMLElement {
    */
   connectedCallback () {
     this.chatt.addEventListener('keypress', e => {
-      if (e.keyCode === 13) {
+      if (e.keyCode === 13 && !this.isMissingUser()) {
         this.sendMsg(e.target.value)
         e.target.value = ''
         e.preventDefault()
       }
     })
     this.connect()
-
     this.userName()
   }
   /**
- * Connects to a webSocket listeans if print massage and parse it to json
+ * Connects to a webSocket, listens if print message then parses it to json format
  */
   connect () {
     return new Promise(function (resolve, reject) {
@@ -49,7 +51,7 @@ class Chatt extends window.HTMLElement {
     }.bind(this))
   }
   /**
- * prints massage and username on site
+ * prints message and username on site
  * @param {} message
  */
   print (message) {
@@ -60,7 +62,7 @@ class Chatt extends window.HTMLElement {
     this.chatt.querySelectorAll('.messages')[0].appendChild(msg)
   }
   /**
- * Contains a object with data that contains information that sends in a string format
+ * Contains an object with data that contains information that sends in a string format
  *  and a key for the websocket to connect
  * @param {} text
  */
@@ -75,13 +77,12 @@ class Chatt extends window.HTMLElement {
 
     this.connect().then(function (socket) {
       socket.send(JSON.stringify(data))
-      // console.log('sending message', text)
     })
 
     window.localStorage.setItem('username', JSON.stringify(data.username))
   }
   /**
- * Listeans to username text input and if you send store the username in localstorage
+ * Listens to username text input and if you send store the username in localstorage
  */
   userName () {
     this.user = JSON.parse(window.localStorage.getItem('username'))
@@ -91,6 +92,12 @@ class Chatt extends window.HTMLElement {
         this.user = this.shadowRoot.querySelector('#username').value
       }
     })
+  }
+  /**
+ * @returns undefined or null value for this.user
+ */
+  isMissingUser () {
+    return (this.user === null || this.user === undefined)
   }
 }
 
