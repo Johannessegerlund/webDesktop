@@ -10,7 +10,11 @@ export class Desk extends window.HTMLElement {
     this.shadowRoot.appendChild(temp.content.cloneNode(true))
     this.windowArr = []
   }
-
+  /**
+ * Listeans to three symols and depending on
+ * witch you press it contains diffrent content
+ * It also listeans to close, witch is a X on the window in site whean pressed it close's
+ */
   connectedCallback () {
     this.shadowRoot.querySelectorAll('.imghover').forEach(element => {
       element.addEventListener('click', event => {
@@ -39,23 +43,31 @@ export class Desk extends window.HTMLElement {
       })
     })
   }
-
+  /**
+ * Listeans to the windows you opens
+ * @param {} deskWindow
+ */
   focus (deskWindow) {
     deskWindow.shadowRoot.querySelector('.appWindow').addEventListener('click', e => {
       this.sortArr(e)
-      this.focus1()
+      this.focusWindow()
     })
   }
-
+  /**
+ * Takes the target thats pressed and place it last
+ * @param {EventTarget} e
+ */
   sortArr (e) {
     this.windowArr.splice(e.target, 1)
     this.windowArr.push(e.target)
   }
-
-  focus1 () {
+  /**
+ * Makes the window that is last in array the highest z-index
+ */
+  focusWindow () {
     for (let i = this.windowArr.length - 1; i >= 0; i--) {
       this.windowArr[i].style.zIndex = i
-      console.log(this.windowArr[i])
+      // console.log(this.windowArr[i])
     }
   }
 }

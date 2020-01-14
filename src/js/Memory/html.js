@@ -17,9 +17,9 @@ Pick.innerHTML = `
 </head>
 <P class ='divHeader'>Memory</p>
 <div id = 'remove'>
-<button id = four >4</button>
-<button id = two >2</button>
-<button id = twoByfour >3</button>
+<button id = four >4X4</button>
+<button id = two >2X2</button>
+<button id = twoByfour >2X4</button>
 </div>
 `
 export { template, Pick }

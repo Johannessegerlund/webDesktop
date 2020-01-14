@@ -10,6 +10,11 @@ class Chatt extends window.HTMLElement {
     this.socket = null
   }
 
+  /**
+   * listeans to chatt and if pressed enter send message
+   * connects to socket
+   * Able to print username and save it
+   */
   connectedCallback () {
     this.chatt.addEventListener('keypress', e => {
       if (e.keyCode === 13) {
@@ -20,9 +25,11 @@ class Chatt extends window.HTMLElement {
     })
     this.connect()
 
-    this.userN()
+    this.userName()
   }
-
+  /**
+ * Connects to a webSocket listeans if print massage and parse it to json
+ */
   connect () {
     return new Promise(function (resolve, reject) {
       if (this.socket && this.socket.readyState === 1) {
@@ -41,7 +48,10 @@ class Chatt extends window.HTMLElement {
       })
     }.bind(this))
   }
-
+  /**
+ * prints massage and username on site
+ * @param {} message
+ */
   print (message) {
     let temp = this.chatt.querySelectorAll('template')[0]
     let msg = document.importNode(temp.content.firstElementChild, true)
@@ -49,7 +59,11 @@ class Chatt extends window.HTMLElement {
     msg.querySelectorAll('.author')[0].textContent = message.username + ':'
     this.chatt.querySelectorAll('.messages')[0].appendChild(msg)
   }
-
+  /**
+ * Contains a object with data that contains information that sends in a string format
+ *  and a key for the websocket to connect
+ * @param {} text
+ */
   sendMsg (text) {
     const data = {
       type: 'message',
@@ -61,13 +75,15 @@ class Chatt extends window.HTMLElement {
 
     this.connect().then(function (socket) {
       socket.send(JSON.stringify(data))
-      console.log('sending message', text)
+      // console.log('sending message', text)
     })
 
     window.localStorage.setItem('username', JSON.stringify(data.username))
   }
-
-  userN () {
+  /**
+ * Listeans to username text input and if you send store the username in localstorage
+ */
+  userName () {
     this.user = JSON.parse(window.localStorage.getItem('username'))
 
     this.shadowRoot.querySelector('#sendUser').addEventListener('click', e => {

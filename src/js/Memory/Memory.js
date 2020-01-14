@@ -16,6 +16,9 @@ class Memory extends window.HTMLElement {
     this.tiles = this.something(this.row, this.cols)
   }
 
+  /**
+   * Listeans to three buttons and whean click removes the buttons and play the size you have pressed
+   */
   connectedCallback () {
     this.shadowRoot.querySelectorAll('button').forEach(element => {
       element.addEventListener('click', e => {
@@ -43,7 +46,13 @@ class Memory extends window.HTMLElement {
       })
     })
   }
-
+  /**
+ *  turnes the bricks if same remove, otherwise flips.
+ * Also winning conditions
+ * @param {number} tile
+ * @param {*} a
+ * @param {img} img
+ */
   turnBrick (tile, a, img) {
     img = img.nodeName === 'IMG' ? img : img.firstElementChild
     if (this.turned2) { return }
@@ -59,18 +68,15 @@ class Memory extends window.HTMLElement {
       }
 
       this.try += 1
-      console.log(this.try)
 
       this.turned2 = img
       if (tile === this.lastTile) {
         this.pairs += 1
 
         if (this.pairs === (this.row * this.cols) / 2) {
-          console.log('you won at' + ', ' + this.try + ', ' + 'tries')
+          // console.log('you won at' + ', ' + this.try + ', ' + 'tries')
           this.shadowRoot.querySelector('#Board').innerHTML = 'you won at' + ', ' + this.try + ', ' + 'tries'
         }
-
-        console.log(this.pairs)
 
         setTimeout(() => {
           this.turned1.parentNode.classList.add('remove')
@@ -92,11 +98,15 @@ class Memory extends window.HTMLElement {
     }
   }
 
+  /**
+   * Creates the bricks and listeans to the bricks.
+   * eventlisteaner so you can play with keyboard.
+   */
   bricks () {
     this.board = this.shadowRoot.querySelector('#Board')
     let img
     let a
-    console.log(this.tiles)
+    // console.log(this.tiles)
     this.tiles.forEach((tile, index) => {
       a = document.createElement('a')
 
@@ -129,6 +139,13 @@ class Memory extends window.HTMLElement {
     )
   }
 
+  /**
+   * A fisher yates shuffel function that returns an array
+   * witch shuffels the bricks
+   * @param {number} rows
+   * @param {number} cols
+   * @returns array
+   */
   something (rows, cols) {
     let i
     let arr = []

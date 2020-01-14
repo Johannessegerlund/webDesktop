@@ -19,7 +19,10 @@ class Deskwindow extends window.HTMLElement {
       this.dragElement(window)
     }
   }
-
+  /**
+ *Listeans if mouse is down
+ * @param {} element
+ */
   dragElement (element) {
     element.addEventListener('mousedown', e => {
       if (e.target === element) {
@@ -27,7 +30,12 @@ class Deskwindow extends window.HTMLElement {
       }
     })
   }
-
+  /**
+ * Determents where the window whean you use mousedown
+ * and if you use mouse up or move
+ * @param {EventTarget} e
+ * @param {*} element
+ */
   dragMouseDown (e, element) {
     e.preventDefault()
     this.isSelected = true
@@ -37,7 +45,11 @@ class Deskwindow extends window.HTMLElement {
     document.addEventListener('mousemove', e => this.elementDrag(e, element))
     document.addEventListener('mouseup', e => this.closeDragElement(e, element))
   }
-
+  /**
+ *  If mouse is down you are able to drag it in diffrent positions on screen
+ * @param {*} e
+ * @param {*} element
+ */
   elementDrag (e, element) {
     if (this.isSelected === true) {
       e.preventDefault()
@@ -52,9 +64,11 @@ class Deskwindow extends window.HTMLElement {
       element.style.left = (element.offsetLeft - this.pos1) + 'px'
     }
   }
-
+  /**
+ * If mouse up you let go of window on its place
+ * @param {*} e
+ */
   closeDragElement (e) {
-    console.log('Leaving')
     this.isSelected = false
   }
 }
